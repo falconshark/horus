@@ -11,7 +11,7 @@ public class UserController {
         return "index";
     }
     @RequestMapping("/hello")
-    public String hello(@RequestParam(value="name", required=false, defaultValue="masa") String name, Model model) {
+    public String string(@RequestParam(value="name", required=false, defaultValue="masa") String name, Model model) {
         model.addAttribute("name", name);
         return "hello";
     }
