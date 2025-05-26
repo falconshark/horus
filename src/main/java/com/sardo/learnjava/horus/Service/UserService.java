@@ -12,6 +12,8 @@ public interface UserService {
 	 * isPresent()を使用でき、値がある場合はtrueを返す
 	 */
 	Optional<User> SelectById(Integer id);
+
+	User SelectByUsername(String username);
     
     /* データを更新する */
     void SaveUser(User user);

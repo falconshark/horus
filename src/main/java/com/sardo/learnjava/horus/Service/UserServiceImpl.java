@@ -1,8 +1,11 @@
 package com.sardo.learnjava.horus.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jdbc.repository.query.Modifying;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,4 +36,10 @@ public class UserServiceImpl implements UserService {
 	public Optional<User> SelectById(Integer id) {
 		return repository.findById(id);
 	}
+
+	@Override
+	public User SelectByUsername(String username){
+		return repository.findByUsername(username);
+	}
+
 }

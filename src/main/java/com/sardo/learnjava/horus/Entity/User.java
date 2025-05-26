@@ -13,7 +13,7 @@ public class User {         // 主キーに当たるフィールドに付与す�
 	private Integer id;
 	private String username;
 	private String password;
-	private String full_name;
+	private String fullName;
     private String phone;
-    private String email_address;
+    private String emailAddress;
 }
