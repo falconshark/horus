@@ -1,0 +1,24 @@
+{
+    "properties": [
+        {
+            "name": "email.smtp.server",
+            "type": "java.lang.String",
+            "description": "Address of SMTP Server'"
+        },
+        {
+            "name": "email.smtp.username",
+            "type": "java.lang.String",
+            "description": "Username of SMTP Server User'"
+        },
+        {
+            "name": "email.smtp.password",
+            "type": "java.lang.String",
+            "description": "Password of SMTP Server User'"
+        },
+        {
+            "name": "email.smtp.port",
+            "type": "java.lang.String",
+            "description": "Port of SMTP Server"
+        }
+    ]
+}

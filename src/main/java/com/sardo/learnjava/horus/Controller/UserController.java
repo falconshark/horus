@@ -3,7 +3,6 @@ package com.sardo.learnjava.horus.Controller;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +21,14 @@ import com.sardo.learnjava.horus.Entity.User;
 import com.sardo.learnjava.horus.Service.UserService;
 import com.sardo.learnjava.horus.Form.UserForm;
 import com.sardo.learnjava.horus.Form.LoginForm;
+import com.sardo.learnjava.horus.Service.MailService;
 
 @Controller
 public class UserController {
     @Autowired
     UserService service;
+    @Autowired
+    MailService mailService;
 
     @RequestMapping("/") // ルートへこのメソッドをマップする
     public String index(Model model) {
