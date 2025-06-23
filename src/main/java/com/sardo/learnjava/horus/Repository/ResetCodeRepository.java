@@ -7,9 +7,8 @@ import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.sardo.learnjava.horus.Entity.User;
+import com.sardo.learnjava.horus.Entity.ResetCode;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
-    public User findByUsername(String username);
-    public User findByEmailAddress(String email);
+public interface ResetCodeRepository extends CrudRepository<ResetCode, Integer> {
+    public ResetCode findByCode(String code);
 }

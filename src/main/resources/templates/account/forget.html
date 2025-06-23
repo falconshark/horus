@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Horus イベント管理システム</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/app.css}" rel="stylesheet">
+</head>
+
+<body class="page-forget">
+    <main>
+        <div class="container">
+            <div class="forget-form">
+                <h1 class="page-title">パスワード再設定</h1>
+                <form method="POST" th:action="@{/forget}">
+                    <div class="form-group">
+                        <label for="email">メールアドレス</label>
+                        <input type="text" name="emailAddress" id="emailAddress" class="form-control">
+                    </div>
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-primary">認證する</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- FOOTER -->
+    </main>
+</body>
+
+</html>

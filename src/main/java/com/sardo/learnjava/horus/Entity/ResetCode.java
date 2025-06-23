@@ -8,12 +8,10 @@ import lombok.NoArgsConstructor;
 @Data               // Getter,Setterが不要になる
 @NoArgsConstructor  // デフォルトコンストラクターの自動生成
 @AllArgsConstructor // 全フィールドに対する初期化値を引数に取るコンストラクタを自動生成
-public class User {         // 主キーに当たるフィールドに付与する(今回はid)に付与
-    @Id
+public class ResetCode {
+    @Id    
 	private Integer id;
-	private String username;
-	private String password;
-	private String fullName;
-    private String phone;
-    private String emailAddress;
+	private String code;
+	private String expiredDate;
+	private String used;
 }

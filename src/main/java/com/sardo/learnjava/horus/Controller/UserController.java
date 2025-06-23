@@ -1,7 +1,11 @@
 package com.sardo.learnjava.horus.Controller;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.HexFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +23,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sardo.learnjava.horus.Entity.User;
 import com.sardo.learnjava.horus.Service.UserService;
+
+import com.sardo.learnjava.horus.Entity.ResetCode;
+import com.sardo.learnjava.horus.Service.ResetCodeService;
+
 import com.sardo.learnjava.horus.Form.UserForm;
 import com.sardo.learnjava.horus.Form.LoginForm;
+import com.sardo.learnjava.horus.Form.ForgetForm;
+
 import com.sardo.learnjava.horus.Service.MailService;
 
 @Controller
 public class UserController {
     @Autowired
-    UserService service;
+    UserService userService;
+    
+    @Autowired
+    ResetCodeService resetCodeService;
+    
     @Autowired
     MailService mailService;
 
@@ -37,7 +51,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET) // ルートへこのメソッドをマップする
     public String reigsterForm() {
-        return "register";
+        return "account/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST) // ルートへこのメソッドをマップする
@@ -62,12 +76,42 @@ public class UserController {
         user.setFullName(form.getFullName());
 
         if (!bindingResult.hasErrors()) {
-            service.SaveUser(user);
+            userService.SaveUser(user);
             return "redirect:/";
         } else {
             /* エラーがある場合は、一覧表示処理を呼ぶ */
             return "redirect:/register";
         }
+    }
+    
+    @RequestMapping(value = "/forget", method = RequestMethod.GET) // ルートへこのメソッドをマップする
+    public String forgetForm() {
+        return "account/forget";
+    }
+    
+    @RequestMapping(value = "/forget", method = RequestMethod.POST) // ルートへこのメソッドをマップする
+    public String getForgetCode(@Validated ForgetForm form, BindingResult bindingResult, Model model,
+            RedirectAttributes redirectAttributes) {
+
+        String emailAddrss = form.getEmailAddress();
+        User targetUser = userService.SelectByEmail(emailAddrss);
+
+        if(targetUser != null){
+            ResetCode restCode = new ResetCode();
+            String code = resetCodeService.CreateRandomCode();
+            restCode.setCode(code);
+
+            Date date = new Date(); // 今日の日付
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.MINUTE, 15);
+            
+            Date expiredDate = calendar.getTime();
+            restCode.setExpiredDate(dateFormat.format(expiredDate));
+            resetCodeService.SaveCode(restCode);
+        }
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST) // ルートへこのメソッドをマップする
@@ -77,7 +121,7 @@ public class UserController {
         String username = form.getUsername();
         String password = form.getPassword();
 
-        User targetUser = service.SelectByUsername(username);
+        User targetUser = userService.SelectByUsername(username);
         String targetPassword = targetUser.getPassword();
 
         try {

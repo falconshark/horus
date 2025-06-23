@@ -14,6 +14,8 @@ public interface UserService {
 	Optional<User> SelectById(Integer id);
 
 	User SelectByUsername(String username);
+
+	User SelectByEmail(String email);
     
     /* データを更新する */
     void SaveUser(User user);

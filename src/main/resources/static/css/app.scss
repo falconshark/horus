@@ -10,6 +10,7 @@
 .topbar-action-links {
   margin-left: 20px;
 }
+
 .topbar-action-links a {
   color: white;
 }
@@ -17,9 +18,11 @@
 .notifcation-area {
   position: relative;
 }
+
 .notifcation-area .notifaction-button {
   color: white;
 }
+
 .notifcation-area .notifcation-list {
   padding: 10px;
   background-color: white;
@@ -31,18 +34,22 @@
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   display: none;
 }
+
 .notifcation-area .notifcation-list.show {
   display: block;
 }
+
 .notifcation-area .notifcation-list ul {
   list-style: none;
   padding: 0;
 }
+
 .notifcation-area .notifcation-list ul li {
   border-bottom: 1px solid #ddd;
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
 .notifcation-area .notifcation-list ul li:last-child {
   border: 0;
   padding-bottom: 0;
@@ -72,29 +79,35 @@ a {
   margin-right: 10px;
 }
 
-.page-login {
+.page-login,
+.page-forget {
   display: flex;
   height: 100vh;
   align-items: center;
   justify-content: center;
-}
-.page-login .form-group {
-  margin-top: 10px;
-}
-.page-login .action-buttons {
-  display: flex;
-  margin-top: 30px;
-  justify-content: center;
-}
-.page-login .action-buttons .btn-primary {
-  margin-right: 10px;
-}
-.page-login .action-button {
-  text-align: center;
-}
-.page-login .action-button .btn {
-  display: inline-block;
-  margin-top: 10px;
+
+  .form-group {
+    margin-top: 10px;
+  }
+
+  .action-buttons {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .action-buttons .btn-primary {
+    margin-right: 10px;
+  }
+
+  .action-button {
+    text-align: center;
+  }
+
+  .action-button .btn {
+    display: inline-block;
+    margin-top: 10px;
+  }
 }
 
 .page-register {
@@ -103,23 +116,29 @@ a {
   align-items: center;
   justify-content: center;
 }
+
 .page-register main {
   width: 50%;
 }
+
 .page-register .form-group {
   margin-top: 10px;
 }
+
 .page-register .action-buttons {
   display: flex;
   margin-top: 30px;
   justify-content: center;
 }
+
 .page-register .action-buttons .btn {
   margin-right: 10px;
 }
+
 .page-register .action-button {
   text-align: center;
 }
+
 .page-register .action-button .btn {
   display: inline-block;
   margin-top: 20px;
@@ -128,6 +147,7 @@ a {
 .page-dashboard .card-primary {
   margin-top: 20px;
 }
+
 .page-dashboard .recent-events li a {
   margin-right: 10px;
 }
@@ -140,9 +160,11 @@ a {
 .page-event .action-links {
   margin-top: 20px;
 }
+
 .page-event .member-list {
   margin-top: 30px;
 }
+
 .page-event .action-buttons {
   margin-top: 10px;
   text-align: right;
