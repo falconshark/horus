@@ -30,7 +30,7 @@ public class MailService {
     @Value("${email.smtp.password}")
     private String password;
 
-    public void sendMail() {
+    public void sendMail(String emailAddrss, String subject, String body) {
         Properties prop = new Properties();
         prop.setProperty("mail.smtp.host", server);
         prop.setProperty("mail.smtp.port", port);
@@ -38,6 +38,8 @@ public class MailService {
         
         // SMTPサーバへの認証とメールセッションの作成
         // ※メールセッション = メールの送信に関するパラメータや設定を保持
+        String username = this.username;
+        String password = this.password;
         Session session = Session.getInstance(prop, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
@@ -46,11 +48,9 @@ public class MailService {
 
         MimeMessage msg = new MimeMessage(session);
         try {
-            String to = "sardo.ip@sardo.work";
-            String fromName = "Sardo";
+            String to = emailAddrss;
+            String fromName = "Horus";
             String fromAddress = "horus@mail.sardo.work";
-            String subject = "テストメール from Customers Mail Cloud";
-            String body = "こんにちは";
 
             msg.setRecipients(Message.RecipientType.TO, to);
             InternetAddress objFrm = new InternetAddress(fromAddress, fromName);
@@ -63,6 +63,5 @@ public class MailService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
     }
 }
