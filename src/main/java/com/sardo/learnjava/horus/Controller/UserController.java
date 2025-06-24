@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sardo.learnjava.horus.Entity.User;
@@ -45,8 +46,13 @@ public class UserController {
     private String baseUrl;
 
     @RequestMapping("/") // ルートへこのメソッドをマップする
-    public String index(Model model) {
-        return "index";
+    public ModelAndView index(Model model, ModelAndView modelAndView) {
+        String error = (String) model.getAttribute("error");
+        String message = (String) model.getAttribute("message");
+        modelAndView.addObject("message", message);
+        modelAndView.addObject("error", error);
+        modelAndView.setViewName("index");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET) // ルートへこのメソッドをマップする
@@ -85,8 +91,11 @@ public class UserController {
     }
     
     @RequestMapping(value = "/forget", method = RequestMethod.GET) // ルートへこのメソッドをマップする
-    public String forgetForm() {
-        return "account/forget";
+    public ModelAndView forgetForm(Model model, ModelAndView modelAndView) {
+        String error = (String) model.getAttribute("error");
+        modelAndView.addObject("error", error);
+        modelAndView.setViewName("account/forget");
+        return modelAndView;
     }
     
     @RequestMapping(value = "/forget", method = RequestMethod.POST) // ルートへこのメソッドをマップする
@@ -117,6 +126,7 @@ public class UserController {
             String mailBody = String.format("以下のリンクをクリックして、パスワードを再設定してください。\n \n %s", resetUrl);
             
             mailService.sendMail(emailAddrss, "Horus - バスワードリセット", mailBody);
+            redirectAttributes.addFlashAttribute("message", "パスワード再設定のリンクを、ご登録のメールアドレス宛に送信いたしました。");
             return "redirect:/";
         }else{
             //Otherwise, return to forget form

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<title>Horus イベント管理システム</title>
-	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-	<link th:href="@{/css/app.css}" rel="stylesheet">
+    <title>Horus イベント管理システム</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/app.css}" rel="stylesheet">
 </head>
 
 <body class="page-login">
@@ -12,6 +13,8 @@
         <div class="container">
             <div class="login-form">
                 <h1 class="page-title">イベント管理システム</h1>
+                <div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
+                <div class="alert alert-success" role="alert" th:if="${message}" th:text="${message}"></div>
                 <form action="/login" method="POST">
                     <div class="action-button">
                         <a href="/register" class="btn btn-primary btn-register">新規登録</a>

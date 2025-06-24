@@ -13,6 +13,7 @@
         <div class="container">
             <div class="forget-form">
                 <h1 class="page-title">パスワード再設定</h1>
+                <div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
                 <form method="POST" th:action="@{/forget}">
                     <div class="form-group">
                         <label for="email">メールアドレス</label>
