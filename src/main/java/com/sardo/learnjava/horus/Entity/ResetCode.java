@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
 
 @Data               // Getter,Setterが不要になる
 @NoArgsConstructor  // デフォルトコンストラクターの自動生成
@@ -11,7 +12,8 @@ import lombok.NoArgsConstructor;
 public class ResetCode {
     @Id    
 	private Integer id;
+	private Integer relatedAccount;
 	private String code;
-	private String expiredDate;
-	private String used;
+	private LocalDateTime expiredDate;
+	private Boolean used;
 }
